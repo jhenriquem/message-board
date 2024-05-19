@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+    <title>Message board</title>
+  </head>
+  <body>
+    <h1>Message board</h1>
+    <div>
+      <main class="message-board">
+          <ul>
+    <% messages.forEach(function(message) { %>
+      <li>
+        <strong><%= message.user %>:</strong> <%= message.text %> (added on <%= message.added.toLocaleString() %>)
+      </li>
+    <% }); %>
+  </ul>
+      </main>
+      <div class="message-form-container">
+        <form method="post" action="/">
+          <div>
+            <input placeholder="Name" type="text" name="name" required /><br>
+            <textarea type="text" name="message" required></textarea>
+          </div>
+          <button>Enviar</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

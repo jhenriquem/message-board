@@ -1,5 +1,5 @@
-var express = require("express");
-var router = express.Router();
+import express from "express";
+const router = express.Router();
 
 const messagesArray = [
   {
@@ -25,7 +25,7 @@ router.post("/", (req, res, next) => {
     user: req.body.name,
     added: new Date(),
   });
-  res.redirect("/");
+  res.render("index", { messages: messagesArray });
 });
 
-module.exports = router;
+export default router;

@@ -2,10 +2,9 @@ import express, { Application } from "express"
 import cors from "cors"
 import bodyParser from "body-parser"
 import morgan from "morgan"
-import dotenv from "dotenv"
 import router from "../routes/messagesRoutes"
 
-export default class Server {
+export default class Server { 
   private app: Application
   private port: number | string
   private paths = {
@@ -15,8 +14,6 @@ export default class Server {
   constructor() {
     this.app = express()
     this.port = process.env.PORT || 8080
-
-    dotenv.config()
 
     this.middlewares();
     this.routes()
@@ -35,7 +32,7 @@ export default class Server {
 
   online() {
     try {
-      this.app.listen(this.port, () => {
+      this.app.listen(this.port, async () => {
         console.log(`Server is online on port ${this.port}`);
       })
     }

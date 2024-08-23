@@ -1,13 +1,10 @@
 import { Router } from "express";
+import { getMessages, postMessage } from "../controllers/messagesControllers";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.send("HI!");
-});
+router.get("/", getMessages);
 
-router.post("/", (req, res) => {
-  res.send("Await minute!");
-});
+router.post("/", postMessage);
 
 export default router;

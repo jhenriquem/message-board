@@ -5,7 +5,10 @@ import messageType from "../types/messageType";
 
 export async function getMessages(req: Request, res: Response) {
   try {
-    const result = await pool.query(queryAllMessages);
+    const client = await pool.connect();
+
+    const result = await client.query(queryAllMessages);
+
     return res
       .status(200)
       .json({ statusMessage: "Success", data: result.rows });
@@ -17,9 +20,13 @@ export async function getMessages(req: Request, res: Response) {
 
 export async function postMessage(req: Request, res: Response) {
   try {
+    const client = await pool.connect();
+
     const data: messageType = req.body;
     const dataArray = [data.id, data.username, data.message, data.date];
-    await pool.query(insertNewMessage, dataArray);
+
+    await client.query(insertNewMessage, dataArray);
+
     return res.status(200).json({ statusMessage: "Success" });
   } catch (err: any) {
     console.log(`Erro no controlador => ${err.message}`);

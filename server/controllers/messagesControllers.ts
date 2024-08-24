@@ -11,7 +11,7 @@ export async function getMessages(req: Request, res: Response) {
       .json({ statusMessage: "Success", data: result.rows });
   } catch (err: any) {
     console.log(`Erro no controlador => ${err.message}`);
-    return res.status(500).json({ statusMessage: err.message });
+    return res.status(500).json({ statusMessage: "Error", error: err.message });
   }
 }
 
@@ -23,6 +23,6 @@ export async function postMessage(req: Request, res: Response) {
     return res.status(200).json({ statusMessage: "Success" });
   } catch (err: any) {
     console.log(`Erro no controlador => ${err.message}`);
-    return res.status(500).json({ statusMessage: err.message });
+    return res.status(500).json({ statusMessage: "Error", error: err.message });
   }
 }
